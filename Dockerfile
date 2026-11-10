@@ -10,8 +10,9 @@ RUN rm -rf /usr/local/tomcat/webapps/*
 #   https://TU-SERVICIO.onrender.com/api/glucosa/saludar
 COPY dist/API_HealthBlood.war /usr/local/tomcat/webapps/ROOT.war
 
-# Tomcat escucha en 8080. En Render hay que crear la variable de entorno PORT=8080
-# porque Render espera el puerto 10000 por defecto.
+# En Render (y en la mayoria de PaaS) el puerto llega en la variable PORT.
+# Tomcat trae 8080 fijo en server.xml, asi que al arrancar lo reemplazamos
+# por el valor de PORT. Si PORT no existe (Docker en tu PC), queda 8080.
 EXPOSE 8080
 
-CMD ["catalina.sh", "run"]
+CMD ["sh", "-c", "sed -i \"s/port=\\\"8080\\\"/port=\\\"${PORT:-8080}\\\"/\" /usr/local/tomcat/conf/server.xml && exec catalina.sh run"]
