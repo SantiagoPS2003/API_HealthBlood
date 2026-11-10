@@ -1,0 +1,16 @@
+# Salida del build de NetBeans
+build/
+nbproject/private/
+
+# Basura local
+*.log
+desktop.ini
+.idea/
+.vscode/
+.env
+local.env
+*.bak
+
+# OJO: dist/ NO se ignora.
+# El WAR compilado (dist/API_HealthBlood.war) se versiona a proposito:
+# Render lo copia dentro de la imagen Docker.

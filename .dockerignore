@@ -1,0 +1,16 @@
+# Contexto de build minimo: solo lo que el Dockerfile necesita.
+# OJO: dist/ NO se excluye, ahi esta el WAR que copia el Dockerfile.
+
+build/
+nbproject/private/
+.git/
+.gitignore
+*.md
+*.log
+desktop.ini
+.idea/
+.vscode/
+
+# Credenciales locales: nunca deben entrar en la imagen
+local.env
+.env
